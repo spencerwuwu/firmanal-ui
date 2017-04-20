@@ -46,3 +46,6 @@ bower.json
 
 # sass tmp file
 *.sassc
+
+# download files
+/public/uploads/*

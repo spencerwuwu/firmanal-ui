@@ -1,0 +1,27 @@
+<% if !flash[:notice].blank? %>
+  <div class="alert alert-info">
+  <%= flash[:notice] %>
+  </div>
+<% end %>
+<br />
+<%= link_to "New Firmware", new_target_path, class: "btn btn-info" %>
+<br />
+<br />
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Reports</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @targets.each do |target| %>
+      <tr>
+        <td><%= target.name %></td>
+        <td><%= link_to "Download Resume", target.attachment_url %></td>
+        <td><%= button_to "Delete",  target, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{target.name}?" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
