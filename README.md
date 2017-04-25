@@ -1,24 +1,20 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Introduction
+This is the UI of [firmanal](https://github.com/kyechou/firmanal).
 
-Things you may want to cover:
 
-* Ruby version
+## Set up
 
-* System dependencies
+* Install all dependencies   
+```$ bundle install ```
 
-* Configuration
+* Migrate databse schema   
+```$ rails db:migrate```
 
-* Database creation
+* Starting the server, default will be at ```localhost:3000```   
+```$ rails s```
 
-* Database initialization
+## Reports
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+(Todo)
