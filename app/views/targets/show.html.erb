@@ -15,7 +15,7 @@
   </thead>
   <tbody>
     <tr>
-      <td><%= target.name %></td>
+      <td><%= @target.name %></td>
 
       <td>
         <table class="table table-bordered table-striped">
@@ -26,16 +26,16 @@
           <tbody>
             <tr>
               <td>
-                <%= if target.extracted == 1 %> Done 
-                <%= elsif target.extracted == 0 %> Pending
-                <%= else %> Fail to extract
-                <%= end %>
+                <% if @target.extracted == 1 %> Done 
+                <% elsif @target.extracted == 0 %> Pending
+                <% else %> Fail to extract
+                <% end %>
               </td>
               <td>
-                <%= if target.source_code == 100 %> <%= link_to "Report", target() %>
-                <%= elsif target.source_code < 100 && target.source_code >= 0 %> Pending
-                <%= else %>Not analyzing
-                <%= end %>
+                <% if @target.source_code == 100 %> 100
+                <% elsif @target.source_code < 100 && @target.source_code >= 0 %> Pending
+                <% else %>Not analyzing
+                <% end %>
               </td>
 
             </tr>
@@ -43,7 +43,6 @@
         </table>
       </td>
 
-      <td><%= link_to "Report", target_path(target) %></td>
     </tr>
   </tbody>
 </table>

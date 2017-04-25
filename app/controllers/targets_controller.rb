@@ -9,9 +9,10 @@ class TargetsController < ApplicationController
 
   def create
     @target = Target.new(target_params)
+    @target[:extracted] = false
 
     if @target.save
-      redirect_to target, notice: "The target file #{@target.name} has been uploaded."
+      redirect_to targets_path, notice: "The target file #{@target.name} is uploaded."
     else
       render "new"
     end
@@ -24,11 +25,11 @@ class TargetsController < ApplicationController
   def destroy
     @target = Target.find(params[:id])
     @target.destroy
-    redirect_to target_path, notice: "The report of #{@target.name} has been deleted."
+    redirect_to targets_path, notice: "The report of #{@target.name} has been deleted."
   end
 
   private
   def target_params
-    params.require(:target).permit(:name, :attachment)
+    params.require(:target).permit!.except()
   end
 end

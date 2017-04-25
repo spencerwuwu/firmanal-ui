@@ -15,6 +15,7 @@
     <%= f.label :attachment %>
     <%= f.file_field :attachment %>
     <br>
+    <br>
     <div class="well" style="background-color: white">
       <label>
         <input type="checkbox" id="source_code_check" />
@@ -49,8 +50,13 @@
       <div class="btn btn-info" id="exploit_save">
         Save analysis method
       </div>
+      <div class="btn btn-warning" id="exploit_reset">
+        Edit analysis method
+      </div>
     </div>
 
-    <%= f.submit "Save", class: "btn btn-primary" %>
+    <%= f.submit "Upload", class: "btn btn-primary btn-lg", id: "final_btn" %>
+    <button class="btn btn-primary btn-lg" id="loading"><i class="fa fa-circle-o-notch fa-spin"></i> Uploading</button>
+
   <% end %>
 </div>
