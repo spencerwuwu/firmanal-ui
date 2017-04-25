@@ -10,13 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170419174949) do
+ActiveRecord::Schema.define(version: 20170424074321) do
 
   create_table "targets", force: :cascade do |t|
     t.string   "name"
     t.string   "attachment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.boolean  "uploaded"
+    t.boolean  "extracted"
+    t.integer  "source_code"
+    t.integer  "angr"
+    t.integer  "afl"
+    t.integer  "network_fuzz"
+    t.integer  "metaexploits"
   end
 
 end

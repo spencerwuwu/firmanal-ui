@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   get 'targets/index'
   get 'targets/new'
   get 'targets/create'
+  get 'targets/show'
   get 'targets/destroy'
-  resources :targets, only: [:index, :new, :create, :destroy]
+  resources :targets, only: [:index, :new, :create, :show, :destroy]
 
   get "/", to: "targets#index"
 

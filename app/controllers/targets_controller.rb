@@ -11,10 +11,14 @@ class TargetsController < ApplicationController
     @target = Target.new(target_params)
 
     if @target.save
-      redirect_to targets_path, notice: "The target file #{@target.name} has been uploaded."
+      redirect_to target, notice: "The target file #{@target.name} has been uploaded."
     else
       render "new"
     end
+  end
+
+  def show
+    @target = Target.find(params[:id])
   end
 
   def destroy

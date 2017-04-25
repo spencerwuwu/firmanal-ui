@@ -49,3 +49,6 @@ bower.json
 
 # download files
 /public/uploads/*
+
+# Integrate with firmanal
+/public/firmanal/*

@@ -1,0 +1,49 @@
+<% if !flash[:notice].blank? %>
+  <div class="alert alert-info">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<br>
+<br>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= target.name %></td>
+
+      <td>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <th>Extracted</th>
+            <th>Source code</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <%= if target.extracted == 1 %> Done 
+                <%= elsif target.extracted == 0 %> Pending
+                <%= else %> Fail to extract
+                <%= end %>
+              </td>
+              <td>
+                <%= if target.source_code == 100 %> <%= link_to "Report", target() %>
+                <%= elsif target.source_code < 100 && target.source_code >= 0 %> Pending
+                <%= else %>Not analyzing
+                <%= end %>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </td>
+
+      <td><%= link_to "Report", target_path(target) %></td>
+    </tr>
+  </tbody>
+</table>

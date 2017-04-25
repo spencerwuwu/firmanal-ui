@@ -14,6 +14,43 @@
     <%= f.text_field :name %>
     <%= f.label :attachment %>
     <%= f.file_field :attachment %>
+    <br>
+    <div class="well" style="background-color: white">
+      <label>
+        <input type="checkbox" id="source_code_check" />
+        source code
+      </label>
+      <%= f.number_field :source_code, style: "display: none" %>
+
+      <label>
+        <input type="checkbox" id="angr_check" />
+        angr
+      </label>
+      <%= f.number_field :angr, style: "display: none" %>
+
+      <label>
+        <input type="checkbox" id="afl_check" />
+        afl
+      </label>
+      <%= f.number_field :afl, style: "display: none" %>
+
+      <label>
+        <input type="checkbox" id="network_fuzz_check" />
+        network fuzz 
+      </label>
+      <%= f.number_field :network_fuzz, style: "display: none" %>
+
+      <label>
+        <input type="checkbox" id="metaexploits_check" />
+        metaexploits
+      </label>
+      <%= f.number_field :metaexploits, style: "display: none" %>
+
+      <div class="btn btn-info" id="exploit_save">
+        Save analysis method
+      </div>
+    </div>
+
     <%= f.submit "Save", class: "btn btn-primary" %>
   <% end %>
 </div>
