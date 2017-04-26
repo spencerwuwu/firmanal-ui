@@ -9,7 +9,8 @@ This is the UI of [firmanal](https://github.com/kyechou/firmanal).
 * Make sure you have **Nodejs** in your system
 
 * Install all dependencies   
-```$ bundle install ```
+```$ gem install bundle```   
+```$ bundle install```
 
 * Migrate databse schema   
 ```$ rails db:migrate```
