@@ -24,8 +24,8 @@ document.addEventListener("turbolinks:load", function() {
     return document.getElementById('network_fuzz_check').checked;
   };
 
-  var is_metaexploits = function() {
-    return document.getElementById('metaexploits_check').checked;
+  var is_metasploits = function() {
+    return document.getElementById('metasploits_check').checked;
   };
 
   var final_btn_on = function() {
@@ -36,7 +36,7 @@ document.addEventListener("turbolinks:load", function() {
     $("#angr_check").attr('disabled', true);
     $("#afl_check").attr('disabled', true);
     $("#network_fuzz_check").attr('disabled', true);
-    $("#metaexploits_check").attr('disabled', true);
+    $("#metasploits_check").attr('disabled', true);
   }
 
   var exploit_reset = function() {
@@ -47,7 +47,7 @@ document.addEventListener("turbolinks:load", function() {
     $("#angr_check").attr('disabled', false);
     $("#afl_check").attr('disabled', false);
     $("#network_fuzz_check").attr('disabled', false);
-    $("#metaexploits_check").attr('disabled', false);
+    $("#metasploits_check").attr('disabled', false);
   }
 
 
@@ -94,11 +94,11 @@ document.addEventListener("turbolinks:load", function() {
       document.getElementById('target_network_fuzz').value = -2;
     }
 
-    if (is_metaexploits()) {
+    if (is_metasploits()) {
       document.getElementById('target_network_fuzz').value = -1;
     }
     else {
-      document.getElementById('target_metaexploits').value = -2;
+      document.getElementById('target_metasploits').value = -2;
     }
   });
 

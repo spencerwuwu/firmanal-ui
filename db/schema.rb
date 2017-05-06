@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170425085746) do
+ActiveRecord::Schema.define(version: 20170505013044) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -30,14 +30,19 @@ ActiveRecord::Schema.define(version: 20170425085746) do
   create_table "targets", force: :cascade do |t|
     t.string   "name"
     t.string   "attachment"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.boolean  "extracted"
     t.integer  "source_code"
     t.integer  "angr"
     t.integer  "afl"
     t.integer  "network_fuzz"
-    t.integer  "metaexploits"
+    t.integer  "metasploits"
+    t.text     "source_code_data",  default: ""
+    t.text     "angr_data_data",    default: ""
+    t.text     "afl_data",          default: ""
+    t.text     "network_fuzz_data", default: ""
+    t.text     "metasploits_data",  default: ""
   end
 
 end
