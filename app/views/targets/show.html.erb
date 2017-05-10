@@ -22,6 +22,10 @@
           <thead>
             <th>Extracted</th>
             <th>Source code</th>
+            <th>angr</th>
+            <th>afl</th>
+            <th>network-fuzz</th>
+            <th>metasploits</th>
           </thead>
           <tbody>
             <tr>
@@ -34,7 +38,25 @@
               <td>
                 <% if @target.source_code == 100 %> 100
                 <% elsif @target.source_code < 100 && @target.source_code >= 0 %> Pending
-                <% else %>Not analyzing
+                <% else %><%= link_to "more", "/targets/source_code/#{@target.id}" %>
+                <% end %>
+              </td>
+              <td>
+                <% if @target.afl == 100 %> 100
+                <% elsif @target.afl < 100 && @target.afl >= 0 %> Pending
+                <% else %><%= link_to "Not analyzing", "/targets/afl/#{@target.id}" %>
+                <% end %>
+              </td>
+              <td>
+                <% if @target.network_fuzz == 100 %> 100
+                <% elsif @target.network_fuzz < 100 && @target.network_fuzz >= 0 %> Pending
+                <% else %><%= link_to "Not analyzing", "/targets/network_fuzz/#{@target.id}" %>
+                <% end %>
+              </td>
+              <td>
+                <% if @target.metasploits == 100 %> 100
+                <% elsif @target.metasploits < 100 && @target.metasploits >= 0 %> Pending
+                <% else %><%= link_to "Not analyzing", "/targets/metasploits/#{@target.id}" %>
                 <% end %>
               </td>
 

@@ -22,6 +22,36 @@ class TargetsController < ApplicationController
     @target = Target.find(params[:id])
   end
 
+  def source_code
+    @target = Target.find(params[:id])
+    @target[:source_code_data] = File.read("#{Rails.root}/public/firmanal/file")
+    @target.save
+  end
+
+  def angr
+    @target = Target.find(params[:id])
+    @target[:angr_data] = File.read("#{Rails.root}/public/firmanal/file")
+    @target.save
+  end
+
+  def afl
+    @target = Target.find(params[:id])
+    @target[:afl_data] = File.read("#{Rails.root}/public/firmanal/file")
+    @target.save
+  end
+
+  def network_fuzz
+    @target = Target.find(params[:id])
+    @target[:network_fuzz_data] = File.read("#{Rails.root}/public/firmanal/file")
+    @target.save
+  end
+
+  def metasploits
+    @target = Target.find(params[:id])
+    @target[:metasploits_data] = File.read("#{Rails.root}/public/firmanal/file")
+    @target.save
+  end
+
   def destroy
     @target = Target.find(params[:id])
     @target.destroy
