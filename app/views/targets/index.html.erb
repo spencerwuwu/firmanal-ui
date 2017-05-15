@@ -20,9 +20,11 @@
     <% @targets.each do |target| %>
       <tr>
         <td><%= target.name %></td>
-        <td><%= link_to "Download Resume", target.attachment_url %></td>
+        <td><%= link_to "Download file", target.attachment_url %></td>
         <td><%= link_to "Report", target_path(target) %></td>
+        <!--
         <td><%= button_to "Delete",  target, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{target.name}?" %></td>
+        -->
       </tr>
     <% end %>
   </tbody>

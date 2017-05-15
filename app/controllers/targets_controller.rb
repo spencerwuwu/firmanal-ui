@@ -12,7 +12,9 @@ class TargetsController < ApplicationController
     @target[:extracted] = false
 
     if @target.save
+      puts "gogogo"
       redirect_to targets_path, notice: "The target file #{@target.name} is uploaded."
+      puts "gone gone"
     else
       render "new"
     end
