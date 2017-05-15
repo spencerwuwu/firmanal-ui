@@ -66,6 +66,12 @@ document.addEventListener("turbolinks:load", function() {
   $('#exploit_save').on('click', function() {
     final_btn_on();
 
+    var a = document.getElementById("target_attachment");
+    var fullPath = a.value;
+    var filename = fullPath.replace(/^.*[\\\/]/, '');
+    console.log(filename);
+    document.getElementById('target_name').value = filename;
+
     if (is_src()) {
       document.getElementById('target_source_code').value = -1;
     }

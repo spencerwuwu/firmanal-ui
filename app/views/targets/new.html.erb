@@ -10,8 +10,7 @@
 
 <div class="well">
   <%= form_for @target, html: { multipart: true } do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, style: "display: none" %>
     <%= f.label :attachment %>
     <%= f.file_field :attachment %>
     <br>
