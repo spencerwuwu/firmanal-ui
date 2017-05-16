@@ -66,8 +66,8 @@ class TargetsController < ApplicationController
   end
 
   def source_code
-    @target = Target.find(params[:id])
     @tmp_string = ""
+    @target = Target.find(params[:id])
     Dir.glob("#{@firmanal_path}/results/#{@target[:id]}/source_code/*") do | single_file |
       @tmp_string += "#{single_file}"
       @tmp_string += ("\n")
