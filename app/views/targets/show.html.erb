@@ -20,7 +20,6 @@
       <td>
         <table class="table table-bordered table-striped">
           <thead>
-            <th>Extracted</th>
             <th>Source code</th>
             <th>angr</th>
             <th>afl</th>
@@ -30,32 +29,25 @@
           <tbody>
             <tr>
               <td>
-                <% if @target.extracted == 1 %> Done 
-                <% elsif @target.extracted == 0 %> Pending
-                <% else %> Fail to extract
-                <% end %>
-              </td>
-              <td>
-                <% if @target.source_code == 100 %> 100
-                <% elsif @target.source_code < 100 && @target.source_code >= 0 %> Pending
+                <% if @target.source_code == -2 %> Not analyzing 
                 <% else %><%= link_to "more", "/targets/source_code/#{@target.id}" %>
                 <% end %>
               </td>
               <td>
-                <% if @target.afl == 100 %> 100
-                <% elsif @target.afl < 100 && @target.afl >= 0 %> Pending
+                Not analyzing
+              </td>
+              <td>
+                <% if @target.afl == -2 %> Not analyzing
                 <% else %><%= link_to "more", "/targets/afl/#{@target.id}" %>
                 <% end %>
               </td>
               <td>
-                <% if @target.network_fuzz == 100 %> 100
-                <% elsif @target.network_fuzz < 100 && @target.network_fuzz >= 0 %> Pending
+                <% if @target.network_fuzz == -2 %> Not analyzing
                 <% else %><%= link_to "more", "/targets/network_fuzz/#{@target.id}" %>
                 <% end %>
               </td>
               <td>
-                <% if @target.metasploits == 100 %> 100
-                <% elsif @target.metasploits < 100 && @target.metasploits >= 0 %> Pending
+                <% if @target.metasploits == -2 %> Not analyzing
                 <% else %><%= link_to "more", "/targets/metasploits/#{@target.id}" %>
                 <% end %>
               </td>

@@ -9,7 +9,7 @@ This is the UI of [firmanal](https://github.com/kyechou/firmanal).
 * Make sure you have **Nodejs** in your system
 
 * Install all dependencies   
-```$ gem install bundle```   
+```$ gem install bundler```   
 ```$ bundle install```
 
 * Migrate databse schema   
