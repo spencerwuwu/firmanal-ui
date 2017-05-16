@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20170516113308) do
     t.string   "attachment"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.boolean  "extracted"
+    t.integer  "extracted"
     t.integer  "source_code"
     t.integer  "angr"
     t.integer  "afl"

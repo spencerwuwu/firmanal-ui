@@ -1,7 +1,6 @@
 
 class TargetsController < ApplicationController
 
-  @firmanal_path = "/home/eecs/firmanal"
 
   def index
     @targets = Target.all
@@ -16,6 +15,7 @@ class TargetsController < ApplicationController
     @target = Target.new(target_params)
     @target[:extracted] = false
 
+    @firmanal_path = "/home/eecs/firmanal"
 
     if @target.save
 
@@ -45,7 +45,7 @@ class TargetsController < ApplicationController
 
       @my_args =  "#{Rails.root}/public/uploads/target/attachment/#{@target[:id]}/#{@target[:name]} -i #{@target[:id]} #{@source_code} #{@afl} #{@network_fuzz} #{@metasploits}"
 
-      puts "#{@my_args}"
+      puts "#{@firmanal_path}/analyze.py #{@my_args}"
 
       @my_pid = Process.fork do
         exec("#{@firmanal_path}/analyze.py #{@my_args} &")
