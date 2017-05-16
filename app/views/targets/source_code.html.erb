@@ -1,1 +1,70 @@
-<%= @target.source_code_data %>
+</br>
+</br>
+<div class="well" id="source_target">
+  <p>
+  </p>
+</div>
+
+<script>
+// Require filesystem package for IO operations
+var fs = require('fs');
+// Put the path you are looking for here
+var path = "/home/eecs/firmanal/results/<%= @target.id %>/source";
+
+//Call the function defined below
+recursiveloop(path, function(err,result){
+  /* begin processing of each result */
+  // For each file in the array
+  for(i=0;i<result.length;i++)
+  {
+    //Write the name of the file
+    filename = result[i].slice(path.length+1, result[i].length);
+    console.log('Processing: ' + filename);
+    filename = "<h3>".concat(filename);
+    filename = filename.concat("</h3>");
+    $("#source_target").append(filename);
+
+    //Read the file
+    fs.readFile(result[i], 'utf8', function(err, data){
+      //If there is an error notify to the console
+      if(err) console.log('Error: ' + err);
+      content = data;
+      $("#source_target").append("<p>");
+      $("#source_target").append(content);
+      $("#source_target").append("</p>");
+      
+    })
+  }
+
+  fs.readFile(result[3], function read(err, data) {
+      if(err) console.log('Error: ' + err);
+    content = data;
+    console.log(content);
+  });
+});
+// Asynchronous function to read folders and files recursively
+function recursiveloop(dir, done)
+{
+  var results = [];
+  fs.readdir(dir, function(err, list){
+    if (err) return done(err);
+    var i = 0;
+    (function next() {
+      var file = list[i++];
+      if (!file) return done(null, results);
+      file = dir + '/' + file;
+      fs.stat(file, function(err, stat) {
+        if (stat && stat.isDirectory()) {
+          recursiveloop(file, function(err, res) {
+            results = results.concat(res);
+            next();
+          });
+        } else {
+          results.push(file);
+          next();
+        }
+      });
+    })();
+  });
+}
+</script>
