@@ -1,5 +1,8 @@
 
 class TargetsController < ApplicationController
+
+  @firmanal_path = "/home/eecs/firmanal"
+
   def index
     @targets = Target.all
   end
@@ -45,10 +48,12 @@ class TargetsController < ApplicationController
       puts "#{@my_args}"
 
       @my_pid = Process.fork do
-        exec("/home/eecs/firmanal/analyze.py #{@my_args} &")
+        exec("#{@firmanal_path}/analyze.py #{@my_args} &")
       end
 
       Process.wait
+      @target[:pid] = @my_args
+      @target.save
 
       redirect_to targets_path, notice: "The target file #{@target.name} is analyzing. Pid = #{@my_pid}"
     else
@@ -62,38 +67,65 @@ class TargetsController < ApplicationController
 
   def source_code
     @target = Target.find(params[:id])
-    @target[:source_code_data] = File.read("#{Rails.root}/public/firmanal/file")
+    @tmp_string = ""
+    Dir.glob("#{@firmanal_path}/results/#{@target[:id]}/source_code/*") do | single_file |
+      @tmp_string += "#{single_file}"
+      @tmp_string += ("\n")
+      @tmp_string += File.read("#{single_file}")
+    end
+    @target[:source_code_data] = @tmp_string
     @target.save
   end
 
   def angr
     @target = Target.find(params[:id])
-    @target[:angr_data] = File.read("#{Rails.root}/public/firmanal/file")
+    @tmp_string = ""
+    Dir.glob("#{@firmanal_path}/results/#{@target[:id]}/angr/*") do | single_file |
+      @tmp_string += "#{single_file}"
+      @tmp_string += ("\n")
+      @tmp_string += File.read("#{single_file}")
+    end
+    @target[:angr_data] = @tmp_string
     @target.save
   end
 
   def afl
     @target = Target.find(params[:id])
-    @target[:afl_data] = File.read("#{Rails.root}/public/firmanal/file")
+    @tmp_string = ""
+    Dir.glob("#{@firmanal_path}/results/#{@target[:id]}/afl/*") do | single_file |
+      @tmp_string += "#{single_file}"
+      @tmp_string += ("\n")
+      @tmp_string += File.read("#{single_file}")
+    end
+    @target[:afl_data] = @tmp_string
     @target.save
   end
 
   def network_fuzz
     @target = Target.find(params[:id])
-    @target[:network_fuzz_data] = File.read("#{Rails.root}/public/firmanal/file")
+    @tmp_string = ""
+    Dir.glob("#{@firmanal_path}/results/#{@target[:id]}/network_fuzz/*") do | single_file |
+      @tmp_string += "#{single_file}"
+      @tmp_string += ("\n")
+      @tmp_string += File.read("#{single_file}")
+    end
+    @target[:network_fuzz_data] = @tmp_string
     @target.save
   end
 
   def metasploits
     @target = Target.find(params[:id])
-    @target[:metasploits_data] = File.read("#{Rails.root}/public/firmanal/file")
+    @tmp_string = ""
+    Dir.glob("#{@firmanal_path}/results/#{@target[:id]}/metasploits/*") do | single_file |
+      @tmp_string += "#{single_file}"
+      @tmp_string += ("\n")
+      @tmp_string += File.read("#{single_file}")
+    end
+    @target[:metasploits_data] = @tmp_string
     @target.save
   end
 
   def destroy
-    @target = Target.find(params[:id])
-    @target.destroy
-    redirect_to targets_path, notice: "The report of #{@target.name} has been deleted."
   end
 
   private
