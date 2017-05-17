@@ -1,7 +1,19 @@
+
 </br>
+<h1> AFL </h1>
 </br>
-<div class="well">
-  <p>
-<%= @target.afl_data %>
-  </p>
-</div>
+<% 
+    @file_list.each do |file_name| 
+    content=File.open(file_name)
+    show_name = file_name.slice! "#{@firmanal_path}"
+%>
+
+<% if file_name.include? "total_fuzzer_stats" %>
+  <h4><%= file_name %></h4>
+  <div class="well" id="source_target">
+    <% content.each_line do |line| %>
+      <p><%= line %></p>
+    <% end %>
+  </div>
+<% end %>
+  <% end %>

@@ -43,7 +43,7 @@ class TargetsController < ApplicationController
         @metasploits = ""
       end
 
-      @my_args =  "#{Rails.root}/public/uploads/target/attachment/#{@target[:id]}/#{@target[:name]} -i #{@target[:id]} #{@source_code} #{@afl} #{@network_fuzz} #{@metasploits}"
+      @my_args =  "'#{Rails.root}/public/uploads/target/attachment/#{@target[:id]}/#{@target[:name]}' -i #{@target[:id]} #{@source_code} #{@afl} #{@network_fuzz} #{@metasploits}"
 
       puts "#{@firmanal_path}/analyze.py #{@my_args}"
 
@@ -72,48 +72,38 @@ class TargetsController < ApplicationController
       Dir[ File.join(dir, '**', '*') ].reject { |p| File.directory? p }
     end
 
-    @hihi = "hihi"
     @file_list = procdir("#{@firmanal_path}")
 
   end
 
   def angr
-    @firmanal_path = "/home/eecs/firmanal"
     @target = Target.find(params[:id])
-    @tmp_string = ""
-    Dir.glob("#{@firmanal_path}/results/#{@target[:id]}/angr/*") do | single_file |
-      @tmp_string += "#{single_file}"
-      @tmp_string += ("\n")
-      @tmp_string += File.read("#{single_file}")
+    @firmanal_path = "/home/eecs/firmanal/results/#{@target[:id]}/metasploit/"
+    def procdir(dir)
+      Dir[ File.join(dir, '**', '*') ].reject { |p| File.directory? p }
     end
-    @target[:angr_data] = @tmp_string
-    @target.save
+
+    @file_list = procdir("#{@firmanal_path}")
   end
 
   def afl
-    @firmanal_path = "/home/eecs/firmanal"
     @target = Target.find(params[:id])
-    @tmp_string = ""
-    Dir.glob("#{@firmanal_path}/results/#{@target[:id]}/afl/*") do | single_file |
-      @tmp_string += "#{single_file}"
-      @tmp_string += ("\n")
-      @tmp_string += File.read("#{single_file}")
+    @firmanal_path = "/home/eecs/firmanal/results/#{@target[:id]}/afl/out/"
+    def procdir(dir)
+      Dir[ File.join(dir, '**', '*') ].reject { |p| File.directory? p }
     end
-    @target[:afl_data] = @tmp_string
-    @target.save
+
+    @file_list = procdir("#{@firmanal_path}")
   end
 
   def network_fuzz
-    @firmanal_path = "/home/eecs/firmanal"
     @target = Target.find(params[:id])
-    @tmp_string = ""
-    Dir.glob("#{@firmanal_path}/results/#{@target[:id]}/network_fuzz/*") do | single_file |
-      @tmp_string += "#{single_file}"
-      @tmp_string += ("\n")
-      @tmp_string += File.read("#{single_file}")
+    @firmanal_path = "/home/eecs/firmanal/results/#{@target[:id]}/metasploit/"
+    def procdir(dir)
     end
-    @target[:network_fuzz_data] = @tmp_string
-    @target.save
+
+    @file_list = procdir("#{@firmanal_path}")
+
   end
 
   def metasploits

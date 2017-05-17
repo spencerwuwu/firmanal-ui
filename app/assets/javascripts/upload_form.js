@@ -70,7 +70,7 @@ document.addEventListener("turbolinks:load", function() {
     var fullPath = a.value;
     var filename = fullPath.replace(/^.*[\\\/]/, '');
     console.log(filename);
-    document.getElementById('target_name').value = filename;
+    document.getElementById('target_name').value = filename.replace(' ','_');
 
     if (is_src()) {
       document.getElementById('target_source_code').value = -1;
