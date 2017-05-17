@@ -101,7 +101,7 @@ document.addEventListener("turbolinks:load", function() {
     }
 
     if (is_metasploits()) {
-      document.getElementById('target_network_fuzz').value = -1;
+      document.getElementById('target_metasploits').value = -1;
     }
     else {
       document.getElementById('target_metasploits').value = -2;
