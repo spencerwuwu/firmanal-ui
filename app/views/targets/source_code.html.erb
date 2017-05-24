@@ -3,23 +3,23 @@
 </br>
 <% 
     @file_list.each do |file_name| 
-      content=File.open(file_name)
-      show_name = file_name.slice! "#{@firmanal_path}"
-%>
-    <h4><%= file_name %></h4>
-    <div class="well" id="source_target">
-<% if content.include? "Hits =" %>
-      <% content.each_line do |line| %>
-        <p><%= line %></p>
-        <% end %>
-  <% else %>
-    <p> No hits </p>
-  <% end %>
-    </div>
-  <% end %>
+  content=File.open(file_name)
+  pure_content=File.read(file_name)
+  show_name = file_name.slice! "#{@firmanal_path}"
 
-  <!--
-    <script type="text/javascript">
+%>
+<% if pure_content.include? "Hits =" %>
+  <h4><%= file_name %></h4>
+  <div class="well" id="source_target">
+    <% content.each_line do |line| %>
+      <p><%= line %></p>
+    <% end %>
+  <% end %>
+  </div>
+<% end %>
+
+<!--
+  <script type="text/javascript">
 
 // Require filesystem package for IO operations
 console.log("hello")
@@ -83,5 +83,5 @@ function recursiveloop(dir, done)
     })();
   });
 }
-    </script>
-    -->
+  </script>
+  -->
